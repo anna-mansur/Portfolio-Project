@@ -14,3 +14,12 @@ the following form: YYYY.0M.0D.
 - Designed a Playlist component
 - Designed a Movie component
 
+## [2025.10.10]
+
+### Added
+
+- Designed a proof of concept for Playlist component
+
+### Updated
+
+- Changed design to include adding playlistSize() kernel method and listAll() secondary method.
