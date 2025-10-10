@@ -106,9 +106,6 @@ Below is further rationale/explanation for the rubric items above:
 > to create a new design. In you do end up picking one at random, you should
 > disclose that here as well.
 
-For my component I decided to do the playlist one since it is the one I am
-most interested in out of my original three. All of the component ideas I came up with had similar structures so I would have implemented any of them in a pretty similar way. At first I was thinking of doing a map of strings for the playlist but I decided a queue of strings would work better since since then the songs would actually be in a set order. Also if I used map I wouldn't be able to add songs that have the same name but different artists so a queue of pairs would work better in that sense too.
-
 > Once you've argued your choice of design, make a branch in your new repo called
 > something like `proof-of-concept`. There are many ways to do this, but my
 > preference is to use GitHub Desktop. From there, you can click the `Branch`
