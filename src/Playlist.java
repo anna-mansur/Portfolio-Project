@@ -1,160 +1,79 @@
-import components.queue.Queue;
-import components.queue.Queue1L;
 
 /**
- * Implementing playlist methods to show proof of concept.
- *
- * @author Anna Mansur
+ * {@code PlaylistKernel} enhanced with secondary methods.
  */
-public class Playlist {
+public interface Playlist extends PlaylistKernel {
 
     /**
-     * Queue of songs representing {@code Playlist}.
-     */
-    private Queue<Playlist.Pair<String, String>> songs;
-
-    /**
-     * No-Argument Constructor.
-     */
-    public Playlist() {
-        this.songs = new Queue1L<Playlist.Pair<String, String>>();
-    }
-
-    /**
-     * Added this for now because I could not get SimplePair to work since I'm
-     * not using Map.
+     * Reports the current {@code Song} at the front of {@code this}.
      *
-     * @param <K>
-     *            name of song
-     * @param <V>
-     *            artist of song
+     * @return the front {@code Song} of {@code this}
+     * @aliases reference returned by {@code currentSong}
+     * @requires {@code this /= <>}
+     * @ensures {@code <currentSong> is prefix of this}
      */
-    private static class Pair<K, V> {
-        private final K name;
-        private final V artist;
-
-        Pair(K name, V artist) {
-            this.name = name;
-            this.artist = artist;
-        }
-
-        public K name() {
-            return this.name;
-        }
-
-        public V artist() {
-            return this.artist;
-        }
-
-        @Override
-        public String toString() {
-            return "\"" + this.name + "\" by " + this.artist;
-        }
-    }
+    Song currentSong();
 
     /**
-     * Adds input title and artist as pair in playlist.
-     */
-    public final void addSong(String title, String artist) {
-
-        this.songs.enqueue(new Pair<String, String>(title, artist));
-    }
-
-    /**
-     * Removes and returns song at front of playlist.
+     * Reports the title of current(front) {@code Song} in {@code this}.
      *
-     * @return pair of song/artist at front
+     * @return the title of current {@code Song}
+     * @requires {@code this /= <>}
+     * @ensures currentTitle = this.currentSong().title()
      */
-    public final Playlist.Pair<String, String> removeSong() {
-        return this.songs.dequeue();
-    }
+    String currentTitle();
 
     /**
-     * Reports if playlist is empty.
+     * Reports the artist of current(front) {@code Song} in {@code this}.
      *
-     * @return true/false
+     * @return the artist of current {@code Song}
+     * @requires {@code this /= <>}
+     * @ensures currentTitle = this.currentSong().artist()
      */
-    public final boolean isEmpty() {
-        return this.songs.length() == 0;
-    }
+    String currentArtist();
 
     /**
-     * Reports total number of songs.
+     * Removes {@code Song} at the front of {@code this} and adds it to the end.
      *
-     * @return total number of songs
+     * @updates this
+     * @requires {@code this /= <>}
+     * @ensures this = #this with front {@code Song} removed and added to end
      */
-    public final int playlistSize() {
-        return this.songs.length();
-    }
+    void skipSong();
 
     /**
-     * Reports current song.
+     * Returns a list of titles and artists of all {@code Song} in {@code this}
+     * with the format of "(title) by (arist)" each on a separate line.
      *
-     * @return current song/artist pair
+     * @return a {@code String} listing all song titles and their assocaited
+     *         artists in {@code this}
+     * @ensures list of all titles and associated artist of each {@code Song} in
+     *          {@code this}
      */
-    public Playlist.Pair<String, String> currentSong() {
-        return this.songs.front();
-    }
+    String listAll();
 
     /**
-     * Skips current song.
-     */
-    public void skip() {
-        if (!this.isEmpty()) {
-            Pair<String, String> current = this.removeSong();
-            this.addSong(current.name(), current.artist());
-        }
-    }
-
-    /**
-     * Clears playlist.
-     */
-    public void clear() {
-        while (!this.isEmpty()) {
-            this.removeSong();
-        }
-    }
-
-    /**
-     * Lists songs in playlist.
-     */
-    public void listAll() {
-        if (this.isEmpty()) {
-            System.out.println("No songs to play.");
-        } else {
-            int size = this.playlistSize();
-            for (int i = 0; i < size; i++) {
-                Pair<String, String> song = this.removeSong();
-                System.out.println(song);
-                this.addSong(song.name(), song.artist());
-            }
-        }
-    }
-
-    /**
-     * Main method.
+     * Reports whether {@code Song} with given artist and title is in
+     * {@code this}.
      *
-     * @param args
-     *            the command line arguments
+     * @param title
+     *            {@code String} title of song
+     * @param artist
+     *            {@code String} artist of song
+     * @return true iff {@code this} contains {@code Song} with given
+     *         {@code title} and {@code artist}
+     * @requires {@code title} and {@code artist} are not null
+     * @ensures hasSong = true if a {@code Song} with given {@code title} and
+     *          {@code artist} exists in {@code this}, false otherwise
      */
-    public static void main(String[] args) {
-        Playlist newPlaylist = new Playlist();
+    boolean hasSong(String title, String artist);
 
-        newPlaylist.addSong("Skyline To", "Frank Ocean");
-        newPlaylist.addSong("Not PLaying", "Playboi Carti");
-        newPlaylist.addSong("Image", "Magdalena Bay");
-
-        System.out.println("Total songs: " + newPlaylist.playlistSize());
-        System.out.println("Now playing: " + newPlaylist.currentSong());
-        newPlaylist.skip();
-        System.out.println("Now playing: " + newPlaylist.currentSong());
-
-        System.out.println("Removed: " + newPlaylist.removeSong());
-        System.out.println("Song list:");
-        newPlaylist.listAll();
-        newPlaylist.clear();
-        System.out.println("Song list:");
-        newPlaylist.listAll();
-    }
+    /**
+     * Reorders all of the {@code Song} in {@code this}.
+     *
+     * @updates this
+     * @ensures |this| = |#this| and this is a permutation of #this
+     */
+    void shuffle();
 
 }
