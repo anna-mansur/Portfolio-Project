@@ -6,14 +6,8 @@ import components.random.Random1L;
  */
 public abstract class PlaylistSecondary implements Playlist {
 
-    /**
-     * Reports the current {@code Song} at the front of {@code this}.
-     *
-     * @return the front {@code Song} of {@code this}
-     * @aliases reference returned by {@code currentSong}
-     * @requires {@code this /= <>}
-     * @ensures {@code <currentSong> is prefix of this}
-     */
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
     public Song currentSong() {
         assert this.totalSongs() > 0 : "Violation of: this /= <>";
 
@@ -27,13 +21,8 @@ public abstract class PlaylistSecondary implements Playlist {
         return current;
     }
 
-    /**
-     * Reports the title of current(front) {@code Song} in {@code this}.
-     *
-     * @return the title of current {@code Song}
-     * @requires {@code this /= <>}
-     * @ensures currentTitle = this.currentSong().title()
-     */
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
     public String currentTitle() {
         assert this.totalSongs() > 0 : "Violation of: this /= <>";
 
@@ -41,13 +30,8 @@ public abstract class PlaylistSecondary implements Playlist {
         return current.title();
     }
 
-    /**
-     * Reports the artist of current(front) {@code Song} in {@code this}.
-     *
-     * @return the artist of current {@code Song}
-     * @requires {@code this /= <>}
-     * @ensures currentTitle = this.currentSong().artist()
-     */
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
     public String currentArtist() {
         assert this.totalSongs() > 0 : "Violation of: this /= <>";
 
@@ -56,13 +40,8 @@ public abstract class PlaylistSecondary implements Playlist {
 
     }
 
-    /**
-     * Removes {@code Song} at the front of {@code this} and adds it to the end.
-     *
-     * @updates this
-     * @requires {@code this /= <>}
-     * @ensures this = #this with front {@code Song} removed and added to end
-     */
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
     public void skipSong() {
         assert this.totalSongs() > 0 : "Violation of: this /= <>";
 
@@ -70,34 +49,15 @@ public abstract class PlaylistSecondary implements Playlist {
         this.addSong(current.title(), current.artist());
     }
 
-    /**
-     * Returns a list of titles and artists of all {@code Song} in {@code this}
-     * with the format of "(title) by (arist)" each on a separate line.
-     *
-     * @return a {@code String} listing all song titles and their assocaited
-     *         artists in {@code this}
-     * @ensures list of all titles and associated artist of each {@code Song} in
-     *          {@code this}
-     */
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
     public String listAll() {
 
         return this.toString();
     }
 
-    /**
-     * Reports whether {@code Song} with given artist and title is in
-     * {@code this}.
-     *
-     * @param title
-     *            {@code String} title of song
-     * @param artist
-     *            {@code String} artist of song
-     * @return true iff {@code this} contains {@code Song} with given
-     *         {@code title} and {@code artist}
-     * @requires {@code title} and {@code artist} are not null
-     * @ensures hasSong = true if a {@code Song} with given {@code title} and
-     *          {@code artist} exists in {@code this}, false otherwise
-     */
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
     public boolean hasSong(String title, String artist) {
         assert title != null : "Violation of: title is not null";
         assert artist != null : "Violation of: artist is not null";
@@ -115,11 +75,32 @@ public abstract class PlaylistSecondary implements Playlist {
         return found;
     }
 
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
     @Override
     public void shuffle() {
 
+        int total = this.totalSongs();
+        Song[] songs = new Song[total];
+        Random shuffle = new Random1L();
+
+        for (int i = 0; i < total; i++) {
+            songs[i] = this.removeCurrentSong();
+        }
+
+        for (int i = 0; i < total; i++) {
+            int random = Math.abs(shuffle.nextInt()) % total;
+            Song temp = songs[i];
+            songs[i] = songs[random];
+            songs[random] = temp;
+        }
+
+        for (int i = 0; i < total; i++) {
+            this.addSong(songs[i].title(), songs[i].artist());
+        }
+
     }
 
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
     @Override
     public String toString() {
 
@@ -137,6 +118,45 @@ public abstract class PlaylistSecondary implements Playlist {
         return listSongs.toString();
     }
 
-    //add equals() method
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
+    public boolean equals(Object playlist) {
+
+        boolean result = false;
+        //not quite sure if I did this right
+        if (playlist instanceof Playlist test) {
+            if (this.totalSongs() == test.totalSongs()) {
+                result = true;
+                int total = this.totalSongs();
+
+                for (int i = 0; i < total; i++) {
+                    Song one = this.removeCurrentSong();
+                    Song two = test.removeCurrentSong();
+
+                    if (!one.equals(two)) {
+                        result = false;
+                    }
+                    this.addSong(one.title(), one.artist());
+                    test.addSong(two.title(), two.artist());
+                }
+            }
+        }
+        return result;
+    }
+
+    // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
+    @Override
+    public int hashCode() {
+
+        int total = this.totalSongs();
+        int hash = 0;
+
+        for (int i = 0; i < total; i++) {
+            Song curr = this.removeCurrentSong();
+            hash = 31 * hash + curr.hashCode();
+            this.addSong(curr.title(), curr.artist());
+        }
+        return hash;
+    }
 
 }
