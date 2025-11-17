@@ -122,8 +122,13 @@ public abstract class PlaylistSecondary implements Playlist {
     @Override
     public boolean equals(Object playlist) {
 
+        if (playlist == this) {
+            return true;
+        }
+        if (playlist == null) {
+            return false;
+        }
         boolean result = false;
-        //not quite sure if I did this right
         if (playlist instanceof Playlist test) {
             if (this.totalSongs() == test.totalSongs()) {
                 result = true;
