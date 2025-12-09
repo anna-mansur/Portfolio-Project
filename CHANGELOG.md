@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+## [2025.12.6]
+
+### Added
+
+- Designed test suite for Playlist component
+- Designed two different use cases for Playlist component
+- Docs folder of html files for Java documentation
+
+### Updated
+
+- Updated the directory structure so it can be bundled as a .jar
+
 ## [2025.11.19]
 
 ### Added

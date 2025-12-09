@@ -1,3 +1,5 @@
+package components.playlist;
+
 import components.queue.Queue;
 import components.queue.Queue1L;
 

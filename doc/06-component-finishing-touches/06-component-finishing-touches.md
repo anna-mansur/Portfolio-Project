@@ -1,8 +1,8 @@
 # Portfolio Part 6: Finishing Touches
 
-- **Name**: <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) and delete this comment -->
-- **Dot Number**: <!-- TODO: fill with OSU dot number (e.g., buckeye.17) and delete this comment -->
-- **Due Date**: <!-- TODO: fill out with due date and time (e.g., 10/17 @ 3:10 PM EST) and delete this comment -->
+- **Name**: Anna Mansur
+- **Dot Number**: mansur.24
+- **Due Date**: 12/10 @12:40
 
 ## Assignment Overview
 
@@ -49,8 +49,6 @@ Many of these additional techniques are somewhat out of the scope of this
 course, but just knowing about them could set you up for long term success.
 
 ## Assignment Checklist
-
-<!-- TODO: browse the checklist then delete this comment -->
 
 To be sure you have completed everything on this assignment, we have littered
 this document with TODO comments. You can browse all of them in VSCode by
@@ -140,8 +138,6 @@ merges, you will need to pull the changes from main into your current branch
 to see them. If you don't like this workflow, you may try following the
 rebase strategies described [here](https://stackoverflow.com/questions/35790561/working-while-waiting-for-pending-pr)
 and [here](https://stackoverflow.com/questions/18021888/continue-working-on-a-git-branch-after-making-a-pull-request).
-
-<!-- TODO: make a new branch from main then delete this comment -->
 
 ## Assignment Tasks
 
@@ -307,18 +303,19 @@ Take some time to fill them out honestly.
 > complete the portfolio project, how much better (or worse) do you think you
 > understand software development and why?
 
-<!-- TODO: discuss -->
+I feel like I understand software development a lot better after completing the portfolio project.
+Before I never really understood the underlying structure of components and how they worked and I feel like I definitely have a better grasp on that now. Obviously there is still a lot I have to learn about software development but this project has helped for sure.
 
 > Also, did the portfolio project surface any gaps in your own knowledge of
 > software development. If so, what are those gaps and how did you address them?
 
-<!-- TODO: discuss -->
+One gap in my knowledge of software development was that I didn't realize how difficult it can be to brainstorm and design a reasonable component in general. During the brainstorming process I had a lot of ideas for components but most of my ideas were too broad and I really had to think about whether my designs were actually possible to implement. I realized it is better to make a simple component that is easy to use instead of trying to design something way too complicated. I don't think there were any other gaps in my knowledge that surfaced while I was completing the project but I do think completing this project helped cement my knowledge of the concepts we learned throughout software 2.
 
 > Finally, as a part of completing the portfolio project, to what extent has
 > your perspective of software development changed, if at all? In other words,
 > is software development something you still enjoy? If not, why not?
 
-<!-- TODO: discuss -->
+After taking software 1 I really wasn't a fan of software development and coding in general and I definetely enjoy it more now that I understand how it works better and get why we do certain things. Before it seemed like I was just having to do random things and not being told why we were doing them, but I actually understand the reasoning behind stuff now.
 
 > One of the challenges of completing the portfolio project is picking up a lot
 > of skills on your own. Some of these skills are, of course, software skills.
@@ -326,29 +323,28 @@ Take some time to fill them out honestly.
 > this process. Therefore, the first question is what skills did you pick up
 > through this process?
 
-<!-- TODO: discuss -->
+I've honestly never really completed any sort of project this big before, so I'd say I gained the skills to complete a large scale software project in general. For example, if I completed another project from scratch I think I would be able to structure it well and break the project into managable tasks to help me complete it. I also had to figure out many things on my own throughout the proccess, which has helped be become more resourceful and better at doing things like creating documentation, exploring APIs, and thinking critically about how I need to accomplish a specific task.
 
 > The follow-up question is: could you rephrase these skills you picked up
 > as bullet points that you could put on a resume? Try it below.
 
-<!-- TODO: discuss -->
+- Developed skills to complete a large-scale project by breaking it into clear, managable tasks
+- Gained experience independently researching solutions, creating documentaion, and understanding APIs
 
 > Next, how has working on this project affected your career trajectory?
 > In other words, do you now hate the topic you picked? Or, are you even more
 > interested in it? Both outcomes are valuable to your personal development.
 
-<!-- TODO: discuss -->
+I definitely found the topic I picked interesting. I would be interested in learning about how to implement an entire music player in the future and creating the user intereface and all the other parts that would be needed. Honestly I've always been unsure about my career trajectory so I don't think this project has impacted that a whole lot. As a data analytics major I have found that I am definitely more interested in computer science than stats and would be more interested in something like game design and this project probably contributed to that. I'm not really sure if I'll stick with a major related to cse in any way though.
 
 > Finally, consider the skills you've picked up and your current career
 > trajectory. What are some things you could do to continue on your
 > career trajectory? Also, who are some mentors you could contact to help
 > you stay on your path?
 
-<!-- TODO: discuss -->
+If I do stick with my current major one thing I want to do that would help with my career trajectory is to just start learning things that would be beneficial for me to know in the future. For example, I want to work with python more since it is a helpful tool in data analysis. I also want to work on some larger scale projects that I could put on a resume that relate specifically to my career goals.
 
 ### Changelog
-
-<!-- TODO: update CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -383,8 +379,6 @@ like to accomplish that, you will need to make GitHub releases after each pull
 request merge (or at least tag your commits). This is not required.
 
 ### Submission
-
-<!-- TODO: read the submission instructions then delete this comment -->
 
 Assuming that your project is in a GitHub repo somewhere and your changes are on
 a proof-of-concept branch, then what we'll want you to do is create a pull
@@ -435,7 +429,5 @@ PDF to read this rubric as a table).
 If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
-
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [survey]: https://forms.gle/dumXHo6A4Enucdkq9

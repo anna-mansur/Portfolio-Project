@@ -1,3 +1,4 @@
+package components.playlist;
 
 /**
  * {@code PlaylistKernel} enhanced with secondary methods.

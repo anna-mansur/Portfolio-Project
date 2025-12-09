@@ -1,3 +1,5 @@
+package components.playlist;
+
 import components.standard.Standard;
 
 /**
