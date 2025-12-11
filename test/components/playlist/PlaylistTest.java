@@ -92,6 +92,26 @@ public class PlaylistTest {
     }
 
     /**
+     * Test skipSong with three songs twice.
+     */
+    @Test
+    public void testSkipSongTwice() {
+
+        Playlist x = new PlaylistOnQueue();
+        Playlist expected = new PlaylistOnQueue();
+        x.addSong("Ghosting", "Mother Mother");
+        x.addSong("Skyline To", "Frank Ocean");
+        x.addSong("holyland", "wave to earth");
+        expected.addSong("holyland", "wave to earth");
+        expected.addSong("Ghosting", "Mother Mother");
+        expected.addSong("Skyline To", "Frank Ocean");
+        x.skipSong();
+        x.skipSong();
+
+        assertEquals(x, expected);
+    }
+
+    /**
      * Test listAll method with three songs.
      */
     @Test
@@ -126,6 +146,7 @@ public class PlaylistTest {
         expected.addSong("holyland", "wave to earth");
 
         assertTrue(x.hasSong("holyland", "wave to earth"));
+        assertTrue(x.hasSong("Skyline To", "Frank Ocean"));
         assertEquals(x, expected);
     }
 
@@ -166,10 +187,26 @@ public class PlaylistTest {
     }
 
     /**
-     * Test toString method with three songs.
+     * Test toString method with one songs.
      */
     @Test
     public void testToString() {
+
+        Playlist x = new PlaylistOnQueue();
+        Playlist expected = new PlaylistOnQueue();
+        x.addSong("Skyline To", "Frank Ocean");
+        expected.addSong("Skyline To", "Frank Ocean");
+        String expectedX = "Skyline To by Frank Ocean\n";
+
+        assertEquals(expectedX, x.toString());
+        assertEquals(x, expected);
+    }
+
+    /**
+     * Test toString method with three songs.
+     */
+    @Test
+    public void testToString2() {
 
         Playlist x = new PlaylistOnQueue();
         Playlist expected = new PlaylistOnQueue();
@@ -221,6 +258,35 @@ public class PlaylistTest {
     }
 
     /**
+     * Test equals method with different song order.
+     */
+    @Test
+    public void testEqualsFalse2() {
+        Playlist x = new PlaylistOnQueue();
+        Playlist y = new PlaylistOnQueue();
+        x.addSong("Impossible", "Travis Scott");
+        x.addSong("Tried Our Best", "Drake");
+        y.addSong("Tried Our Best", "Drake");
+        y.addSong("Impossible", "Travis Scott");
+
+        assertFalse(x.equals(y));
+    }
+
+    /**
+     * Test equals with same song name.
+     */
+    @Test
+    public void testEqualsFalse3() {
+
+        Playlist x = new PlaylistOnQueue();
+        Playlist y = new PlaylistOnQueue();
+        x.addSong("Moon", "Daniel Caesar");
+        y.addSong("Moon", "Kanye West");
+
+        assertFalse(x.equals(y));
+    }
+
+    /**
      * Test hashCode method with equal playlists.
      */
     @Test
@@ -235,6 +301,34 @@ public class PlaylistTest {
         y.addSong("Grey", "Travis Scott");
 
         assertEquals(x.hashCode(), y.hashCode());
+
+    }
+
+    /**
+     * Test hashCode method with equal playlists.
+     */
+    @Test
+    public void testHashCode2() {
+        Playlist x = new PlaylistOnQueue();
+        Playlist y = new PlaylistOnQueue();
+        x.addSong("Impossible", "Travis Scott");
+        y.addSong("Impossible", "Travis Scott");
+
+        assertEquals(x.hashCode(), y.hashCode());
+
+    }
+
+    /**
+     * Test hashCode method with different playlists.
+     */
+    @Test
+    public void testHashCode3() {
+        Playlist x = new PlaylistOnQueue();
+        Playlist y = new PlaylistOnQueue();
+        x.addSong("Impossible", "Travis Scott");
+        y.addSong("Grey", "Travis Scott");
+
+        assertFalse(x.hashCode() == y.hashCode());
 
     }
 }

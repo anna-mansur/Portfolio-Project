@@ -37,8 +37,21 @@ public class PlaylistOnQueueTest {
         x.addSong("Backyard", "Travis Scott");
         x.clear();
 
-        assertEquals(0, x.totalSongs());
         assertTrue(x.isEmpty());
+        assertEquals(0, x.totalSongs());
+    }
+
+    /**
+     * Test clear method with empty playlist.
+     */
+    @Test
+    public void testClearEmpty() {
+
+        Playlist x = new PlaylistOnQueue();
+        x.clear();
+
+        assertTrue(x.isEmpty());
+        assertEquals(0, x.totalSongs());
     }
 
     /**
@@ -80,7 +93,6 @@ public class PlaylistOnQueueTest {
 
         Playlist x = new PlaylistOnQueue();
         Playlist y = x.newInstance();
-        //check null?
 
         assertTrue(y instanceof PlaylistOnQueue);
         assertEquals(0, y.totalSongs());
@@ -156,16 +168,20 @@ public class PlaylistOnQueueTest {
     }
 
     /**
-     * Test of totalSongs with two songs.
+     * Test of removeCurrentSong with two songs and checks order of removal.
      */
     @Test
-    public void testTotalSongs2() {
+    public void testRemoveCurrentSongsInOrder() {
 
         Playlist x = new PlaylistOnQueue();
-        x.addSong("Wishes", "Beach House");
-        x.addSong("Myth", "Beach House");
+        x.addSong("Moment", "Not for Radio");
+        x.addSong("My Turn", "Not for Radio");
+        Playlist.Song removed1 = x.removeCurrentSong();
+        Playlist.Song removed2 = x.removeCurrentSong();
 
-        assertEquals(2, x.totalSongs());
+        assertEquals("Moment", removed1.title());
+        assertEquals("My Turn", removed2.title());
+        assertTrue(x.isEmpty());
     }
 
     /**
@@ -178,6 +194,19 @@ public class PlaylistOnQueueTest {
 
         assertEquals(0, x.totalSongs());
         assertTrue(x.isEmpty());
+    }
+
+    /**
+     * Test of totalSongs with two songs.
+     */
+    @Test
+    public void testTotalSongs2() {
+
+        Playlist x = new PlaylistOnQueue();
+        x.addSong("Wishes", "Beach House");
+        x.addSong("Myth", "Beach House");
+
+        assertEquals(2, x.totalSongs());
     }
 
     /**
