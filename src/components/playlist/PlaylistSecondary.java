@@ -1,3 +1,5 @@
+package components.playlist;
+
 import components.random.Random;
 import components.random.Random1L;
 
@@ -5,6 +7,11 @@ import components.random.Random1L;
  * Layered implementations of secondary methods for {@code Playlist}.
  */
 public abstract class PlaylistSecondary implements Playlist {
+
+    /**
+     * Useful constant, not a magic number: 3.
+     */
+    private static final int THIRTYONE = 31;
 
     // CHECKSTYLE: ALLOW THIS METHOD TO BE OVERRIDDEN
     @Override
@@ -14,6 +21,9 @@ public abstract class PlaylistSecondary implements Playlist {
         Song current = this.removeCurrentSong();
         this.addSong(current.title(), current.artist());
 
+        /*
+         * For loop to cycle back to current Song of Playlist
+         */
         for (int i = 1; i < this.totalSongs(); i++) {
             Song temp = this.removeCurrentSong();
             this.addSong(temp.title(), temp.artist());
@@ -65,6 +75,10 @@ public abstract class PlaylistSecondary implements Playlist {
         boolean found = false;
         int totalSongs = this.totalSongs();
 
+        /*
+         * Goes through each Song and checks if the title and artist of each
+         * match
+         */
         for (int i = 0; i < totalSongs; i++) {
             Song curr = this.removeCurrentSong();
             if (curr.title().equals(title) && curr.artist().equals(artist)) {
@@ -83,10 +97,16 @@ public abstract class PlaylistSecondary implements Playlist {
         Song[] songs = new Song[total];
         Random shuffle = new Random1L();
 
+        /*
+         * Creates array of Songs in Playlist
+         */
         for (int i = 0; i < total; i++) {
             songs[i] = this.removeCurrentSong();
         }
 
+        /*
+         * Shuffles the Songs
+         */
         for (int i = 0; i < total; i++) {
             int random = Math.abs(shuffle.nextInt()) % total;
             Song temp = songs[i];
@@ -94,6 +114,9 @@ public abstract class PlaylistSecondary implements Playlist {
             songs[random] = temp;
         }
 
+        /*
+         * Adds Songs back to Playlist
+         */
         for (int i = 0; i < total; i++) {
             this.addSong(songs[i].title(), songs[i].artist());
         }
@@ -158,7 +181,7 @@ public abstract class PlaylistSecondary implements Playlist {
 
         for (int i = 0; i < total; i++) {
             Song curr = this.removeCurrentSong();
-            hash = 31 * hash + curr.hashCode();
+            hash = THIRTYONE * hash + curr.hashCode();
             this.addSong(curr.title(), curr.artist());
         }
         return hash;
